@@ -1,0 +1,21 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+starlette==0.38.5
+requests==2.32.3
+python-dotenv==1.0.1
+jinja2==3.1.4
+pydantic==2.9.2
+pymupdf==1.24.10
+pillow==10.4.0
+ftfy==6.2.0
+rapidfuzz==3.8.1
+opencv-python-headless==4.9.0.80
+paddlepaddle==3.0.0      # CPU, tương thích Py3.11
+paddleocr==3.0.3         # yêu cầu PaddlePaddle >= 3.0
+langchain==0.3.17
+langchain-community==0.3.17
+langgraph==0.6.5
+langchain-google-genai==2.1.12   # yêu cầu langchain-core >=0.3.13,<0.4
+faiss-cpu==1.8.0.post1
+python-docx==1.1.2
+PyMuPDF==1.24.10

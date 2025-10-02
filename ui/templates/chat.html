@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Agentic RAG Chat</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:0;padding:0;background:#fafafa}
+    #chat{max-width:900px;margin:40px auto;background:white;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:24px}
+    .msg{margin:12px 0}
+    .me{color:#333}
+    .bot{color:#0b5;white-space:pre-wrap}
+    .cite-btn{margin:4px 6px;padding:6px 10px;border-radius:8px;border:1px solid #ddd;cursor:pointer}
+  </style>
+</head>
+<body>
+<div id="chat">
+  <h2>Agentic RAG</h2>
+  <div id="messages"></div>
+  <input id="q" placeholder="Hỏi gì đó..." style="width:80%"/>
+  <button onclick="send()">Gửi</button>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>
