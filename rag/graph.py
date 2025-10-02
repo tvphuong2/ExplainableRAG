@@ -1,6 +1,6 @@
 from __future__ import annotations
 from langgraph.graph import StateGraph, END
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import BaseMessage, HumanMessage
 from config.models import LLMAdapter, LLMConfig
 from config import settings as C
 
@@ -18,6 +18,17 @@ def _hydrate_state(state: AgentState) -> str:
         if isinstance(value, str):
             stripped = value.strip()
             return stripped or None
+        if isinstance(value, BaseMessage):
+            coerced = _coerce_query(value.content)
+            if coerced:
+                return coerced
+            # Some LangChain messages place the text under additional_kwargs
+            additional = getattr(value, "additional_kwargs", None)
+            if isinstance(additional, dict):
+                coerced = _coerce_query(additional)
+                if coerced:
+                    return coerced
+            return None
         if isinstance(value, HumanMessage):
             return _coerce_query(value.content)
         if isinstance(value, tuple):
@@ -40,6 +51,10 @@ def _hydrate_state(state: AgentState) -> str:
                     coerced = _coerce_query(value[key])
                     if coerced:
                         return coerced
+            if "additional_kwargs" in value:
+                coerced = _coerce_query(value["additional_kwargs"])
+                if coerced:
+                    return coerced
             if "messages" in value:
                 coerced = _coerce_query(value["messages"])
                 if coerced:
